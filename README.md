@@ -10,10 +10,6 @@ Rafiki is a task scheduling library for Java
 
 ## Installation ##
 
-Direct Download (2015/7/10)
-
-The lastest stable is rafiki-1.2.tar.gz (release notes)
-
 Maven
 
 	<dependency>
@@ -51,10 +47,6 @@ demo for rafiki:
 		}
 	}
 	
-## Documentation ##
-
-Full documentation is hosted on [HERE](). 
-Sources are available in the `docs/` directory.
 
 ## License ##
 
