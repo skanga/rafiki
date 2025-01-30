@@ -9,7 +9,7 @@
 
 	<name>rafiki</name>
 	<description>Task scheduling library for Java </description>
-	<url>https://github.com/PinaeOS/rafiki</url>
+	<url>https://github.com/skanga/rafiki</url>
 
 	<licenses>
 		<license>
