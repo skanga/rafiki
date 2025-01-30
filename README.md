@@ -15,11 +15,22 @@ Maven
 	<dependency>
 	    <groupId>io.github.skanga</groupId>
 	    <artifactId>rafiki-skanga</artifactId>
-	    <version>1.2</version>
+	    <version>1.3</version>
 	</dependency>
 
+## Build
 
-## Getting Start ##
+>mvn clean compile
+
+## Create jar file
+
+>mvn clean package
+
+## Publish jar file to Maven Central
+
+>mvn clean deploy -P release
+
+## Getting Started ##
 
 demo for rafiki:
 
