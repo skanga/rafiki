@@ -32,7 +32,7 @@ Maven
 
 ## Getting Started ##
 
-demo for rafiki:
+Sample code:
 
 	public class DemoTestManager {
 		public static void main(String arg[]) throws Exception {
@@ -58,6 +58,7 @@ demo for rafiki:
 		}
 	}
 	
+More examples available in ./src/example/java/org/pinae
 
 ## License ##
 
