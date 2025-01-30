@@ -1,4 +1,6 @@
-#rafiki#
+#Rafiki#
+
+This fork is modified to contain newer libraries like log4j and convert Chinese comments to English
 
 Rafiki is a task scheduling library for Java
 
