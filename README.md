@@ -58,7 +58,7 @@ Sample code:
 		}
 	}
 	
-More examples available in ./src/example/java/org/pinae
+More examples available [here] (./src/example/java/org/pinae/rafiki)
 
 ## License ##
 
