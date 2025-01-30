@@ -58,8 +58,8 @@ Sample code:
 		}
 	}
 	
-More examples available [here] (/src/example/java/org/pinae/rafiki)
+More examples available at /src/example/java/org/pinae/rafiki/
 
 ## License ##
 
-rafiki is licensed under the Apache License, Version 2.0 See LICENSE for full license text
+Rafiki is licensed under the Apache License, Version 2.0 See LICENSE for full license text
