@@ -14,3 +14,7 @@ hs_err_pid*
 *.project
 /target/
 /.settings/
+
+# IntelliJ stuff
+*.iml
+/.idea/
