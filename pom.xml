@@ -31,8 +31,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>19</maven.compiler.source>
-		<maven.compiler.target>19</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
 
 	<dependencies>
@@ -56,9 +56,9 @@
 	</organization>
 	
 	<scm>
-		<connection>scm:git:https://github.com/PinaeOS/rafiki.git</connection>
-		<url>https://github.com/PinaeOS/rafiki</url>
-		<developerConnection>scm:git:https://github.com/PinaeOS/rafiki.git</developerConnection>
+		<connection>scm:git:https://github.com/skanga/rafiki.git</connection>
+		<url>https://github.com/skanga/rafiki</url>
+		<developerConnection>scm:git:https://github.com/skanga/rafiki.git</developerConnection>
 		<tag>v1.2</tag>
 	</scm>
 	
@@ -244,7 +244,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.5</version>
+						<version>1.6</version>
 						<executions>
 							<execution>
 								<phase>verify</phase>
