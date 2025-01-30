@@ -1,7 +1,5 @@
 package org.pinae.rafiki.task;
 
-import java.io.Serial;
-
 /**
  * Task abnormality threw an Exception
  *
@@ -9,7 +7,6 @@ import java.io.Serial;
  */
 public class TaskException extends Exception {
 
-    @Serial
     private static final long serialVersionUID = 1L;
 
     public TaskException() {

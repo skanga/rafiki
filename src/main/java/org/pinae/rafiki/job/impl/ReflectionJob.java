@@ -67,7 +67,7 @@ public class ReflectionJob extends AbstractJob {
             }
         }
         try {
-            this.object = this.clazz.newInstance();
+            this.object = this.clazz.getDeclaredConstructor().newInstance();
             if (method == null && methodName != null) {
                 this.method = this.clazz.getMethod(this.methodName, paramClasses);
             }
