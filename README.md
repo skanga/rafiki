@@ -14,7 +14,7 @@ Maven
 
 	<dependency>
 	    <groupId>org.pinae</groupId>
-	    <artifactId>rafiki</artifactId>
+	    <artifactId>rafiki-skanga</artifactId>
 	    <version>1.2</version>
 	</dependency>
 
