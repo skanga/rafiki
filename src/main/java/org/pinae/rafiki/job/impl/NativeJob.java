@@ -8,46 +8,41 @@ import org.pinae.rafiki.job.AbstractJob;
 import org.pinae.rafiki.job.JobException;
 
 /**
- * 本地执行作业
- * 支持调用本地命令行内容
- * 
+ * This class supports executing local jobs with a given command
+ *
  * @author Huiyugeng
- * 
  */
 public class NativeJob extends AbstractJob {
 
-	private String command; 
-	
-	private StringBuffer result = new StringBuffer();
+    private String command;
 
-	public void setCommand(String command) {
-		this.command = command;
-	}
+    private StringBuffer result = new StringBuffer();
 
-	public String getResult() {
-		return result.toString();
-	}
+    public void setCommand(String command) {
+        this.command = command;
+    }
 
-	@Override
-	public boolean execute() throws JobException {
-		
-		if (command != null && !command.equals("")) {
-			try {
-				Process process = Runtime.getRuntime().exec(command);
-				InputStreamReader streamReader = new InputStreamReader(process.getInputStream());
-				LineNumberReader lineReader = new LineNumberReader(streamReader);
+    public String getResult() {
+        return result.toString();
+    }
 
-				String line = null;
-				while ((line = lineReader.readLine()) != null) {
-					result.append(line);
-				}
-			} catch (IOException e) {
-				throw new JobException(e);
-			}
-		}
-		
-		return true;
+    @Override
+    public boolean execute() throws JobException {
+        if (command != null && !command.equals("")) {
+            try {
+                Process process = Runtime.getRuntime().exec(command);
+                InputStreamReader streamReader = new InputStreamReader(process.getInputStream());
+                LineNumberReader lineReader = new LineNumberReader(streamReader);
 
-	}
+                String line = null;
+                while ((line = lineReader.readLine()) != null) {
+                    result.append(line);
+                }
+            } catch (IOException e) {
+                throw new JobException(e);
+            }
+        }
 
+        return true;
+    }
 }

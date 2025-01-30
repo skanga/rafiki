@@ -8,128 +8,125 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.pinae.rafiki.trigger.AbstractTrigger;
 
 /**
- * 日历触发器
- * 
- * @author Huiyugeng
+ * Calendar Triggers
  *
+ * @author Huiyugeng
  */
 public class CalendarTrigger extends AbstractTrigger {
-	private static Logger logger = Logger.getLogger(CalendarTrigger.class);
+    private static final Logger logger = LogManager.getLogger(CalendarTrigger.class);
 
-	private List<Date[]> timeList = new ArrayList<Date[]>();
+    private final List<Date[]> timeList = new ArrayList<>();
 
-	private String timeFormat[] = { "\\d+/\\d+/\\d+\\s+\\d+:\\d+:\\d+", "\\d+-\\d+-\\d+\\s+\\d+:\\d+:\\d+" };
-	private String parseFormat[] = { "yyyy/MM/dd HH:mm:ss", "yyyy-MM-dd HH:mm:ss" };
+    private final String[] timeFormat = {"\\d+/\\d+/\\d+\\s+\\d+:\\d+:\\d+", "\\d+-\\d+-\\d+\\s+\\d+:\\d+:\\d+"};
+    private final String[] parseFormat = {"yyyy/MM/dd HH:mm:ss", "yyyy-MM-dd HH:mm:ss"};
 
-	@Override
-	public boolean match(Date now) {
+    @Override
+    public boolean match(Date now) {
 
-		if (super.isFinish()) {
-			return false;
-		}
+        if (super.isFinish()) {
+            return false;
+        }
 
-		for (Date[] time : this.timeList) {
-			if (time != null && time.length == 2) {
+        for (Date[] time : this.timeList) {
+            if (time != null && time.length == 2) {
 
-				Date startDate = time[0];
-				Date endDate = time[1];
+                Date startDate = time[0];
+                Date endDate = time[1];
 
-				if (now.equals(startDate) || now.equals(endDate)) {
-					super.incExecuteCount();
-					return true;
-				}
-				
-				if (endDate == null && now.after(startDate)) {
-					super.incExecuteCount();
-					return true;
-				}
+                if (now.equals(startDate) || now.equals(endDate)) {
+                    super.incExecuteCount();
+                    return true;
+                }
 
-				if (now.after(startDate) && now.before(endDate)) {
-					super.incExecuteCount();
-					return true;
-				}
+                if (endDate == null && now.after(startDate)) {
+                    super.incExecuteCount();
+                    return true;
+                }
 
-			}
-		}
-		return false;
-	}
+                if (now.after(startDate) && now.before(endDate)) {
+                    super.incExecuteCount();
+                    return true;
+                }
 
-	/**
-	 * <p>设置触发时间, 支持添加多个触发时间</p>
-	 * 
-	 * <p>
-	 * 日历的格式是 'startTime - endTime'
-	 * 时间格式为 'yyyy/mm/dd HH:MM:SS' 或者 'yyyy-mm-dd HH:MM:SS'
-	 * 例如:  '2015/02/12 12:00:00 - 2015/02/13 12:00:00'
-	 * </p>
-	 * 
-	 * @param time 触发时间, 使用'startTime - endTime'格式
-	 */
-	public void setTime(String time) {
-		String startTime = "";
-		String endTime = "";
+            }
+        }
+        return false;
+    }
 
-		for (int i = 0; i < this.timeFormat.length; i++) {
-			String absoluteTimeFormat = "(" + this.timeFormat[i] + ")\\s*-\\s*(" + this.timeFormat[i] + ")";
+    /**
+     *<p>Set the trigger time, support adding multiple trigger times</p>
+     *
+     * <p>
+     * The calendar format is 'startTime - endTime'
+     * The time format is 'yyyy/mm/dd HH:MM:SS' or 'yyyy-mm-dd HH:MM:SS'
+     * Eg::  '2015/02/12 12:00:00 - 2015/02/13 12:00:00'
+     * </p>
+     *
+     * @param time the Trigger time, use 'startTime - endTime' format
+     */
+    public void setTime(String time) {
+        String startTime = "";
+        String endTime = "";
 
-			if (time.matches(absoluteTimeFormat)) {
-				Pattern pattern = Pattern.compile(absoluteTimeFormat);
-				Matcher matcher = pattern.matcher(time);
+        for (int i = 0; i < this.timeFormat.length; i++) {
+            String absoluteTimeFormat = "(" + this.timeFormat[i] + ")\\s*-\\s*(" + this.timeFormat[i] + ")";
 
-				if (matcher.find() && matcher.groupCount() == 2) {
-					startTime = matcher.group(1);
-					endTime = matcher.group(2);
-				}
-			}
-		}
+            if (time.matches(absoluteTimeFormat)) {
+                Pattern pattern = Pattern.compile(absoluteTimeFormat);
+                Matcher matcher = pattern.matcher(time);
 
-		try {
-			for (int i = 0; i < this.timeFormat.length; i++) {
-				if (startTime.matches(this.timeFormat[i]) && endTime.matches(this.timeFormat[i])) {
-					SimpleDateFormat dateFormat = new SimpleDateFormat(this.parseFormat[i]);
-					Date startDate = dateFormat.parse(startTime);
-					Date endDate = dateFormat.parse(endTime);
+                if (matcher.find() && matcher.groupCount() == 2) {
+                    startTime = matcher.group(1);
+                    endTime = matcher.group(2);
+                }
+            }
+        }
 
-					this.timeList.add(new Date[] { startDate, endDate });
-				}
-			}
-		} catch (ParseException e) {
-			logger.warn(String.format("Calendar Parse Error: time=%s, exception=%s", time, e.getMessage()));
-		}
+        try {
+            for (int i = 0; i < this.timeFormat.length; i++) {
+                if (startTime.matches(this.timeFormat[i]) && endTime.matches(this.timeFormat[i])) {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat(this.parseFormat[i]);
+                    Date startDate = dateFormat.parse(startTime);
+                    Date endDate = dateFormat.parse(endTime);
 
-	}
+                    this.timeList.add(new Date[]{startDate, endDate});
+                }
+            }
+        } catch (ParseException e) {
+            logger.warn(String.format("Calendar Parse Error: time=%s, exception=%s", time, e.getMessage()));
+        }
+    }
 
-	/**
-	 * <p>设置触发时间, 支持添加多个触发时间</p>
-	 * 
-	 * <p>
-	 * 如果结束时间为null, 则任务不会出现停止
-	 * </p>
-	 * 
-	 * @param startTime 任务开始时间
-	 * @param endtime 任务结束时间
-	 */
-	public void setTime(Date startTime, Date endtime) {
-		startTime = startTime == null ? new Date() : startTime;
-		endtime = endtime == null ? new Date() : endtime;
+    /**
+     * <p>Set the trigger time, support adding multiple trigger times</p>
+     *
+     * <p>
+     * If the end time is null, the task will not stop
+     * </p>
+     *
+     * @param startTime Start Time
+     * @param endTime   End Time
+     */
+    public void setTime(Date startTime, Date endTime) {
+        startTime = startTime == null ? new Date() : startTime;
+        endTime = endTime == null ? new Date() : endTime;
 
-		this.timeList.add(new Date[] { startTime, endtime });
-	}
+        this.timeList.add(new Date[]{startTime, endTime});
+    }
 
-	/**
-	 * <p>设置触发开始时间, 支持添加多个触发时间</p>
-	 * 
-	 * @param startTime 任务开始时间
-	 * 
-	 */
-	public void setTime(Date startTime) {
-		startTime = startTime == null ? new Date() : startTime;
+    /**
+     * <p>Set the trigger start time, support adding multiple trigger times</p>
+     *
+     * @param startTime Task start time
+     */
+    public void setTime(Date startTime) {
+        startTime = startTime == null ? new Date() : startTime;
 
-		this.timeList.add(new Date[] { startTime, null });
-	}
-
+        this.timeList.add(new Date[]{startTime, null});
+    }
 }

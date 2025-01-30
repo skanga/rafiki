@@ -10,15 +10,15 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Trigger {
-	String name();
-	
-	String cron() default "";
-	
-	int repeat() default 0;
-	
-	long interval() default 0;
-	
-	String start() default "";
-	
-	String end() default "";
+    String name();
+
+    String cron() default "";
+
+    int repeat() default 0;
+
+    long interval() default 0;
+
+    String start() default "";
+
+    String end() default "";
 }

@@ -1,33 +1,32 @@
 package org.pinae.rafiki.job;
 
 /**
- * 作业执行异常
- * 
+ * Job execution exception
+ *
  * @author Huiyugeng
- * 
  */
 public class JobException extends Exception {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 
-	public JobException() {
-		super();
-	}
+    public JobException() {
+        super();
+    }
 
 
-	public JobException(String message) {
-		super(message);
-	}
+    public JobException(String message) {
+        super(message);
+    }
 
 
-	public JobException(Throwable cause) {
-		super(cause);
-	}
+    public JobException(Throwable cause) {
+        super(cause);
+    }
 
 
-	public JobException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public JobException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
 }

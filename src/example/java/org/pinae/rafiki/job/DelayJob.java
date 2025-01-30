@@ -1,12 +1,11 @@
 package org.pinae.rafiki.job;
 
-import org.apache.log4j.Logger;
-import org.pinae.rafiki.job.Job;
-import org.pinae.rafiki.job.JobException;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class DelayJob implements Job {
 
-	private static Logger logger = Logger.getLogger(DelayJob.class);
+	private static Logger logger = LogManager.getLogger(DelayJob.class);
 	
 	private int jobId = 0;
 	

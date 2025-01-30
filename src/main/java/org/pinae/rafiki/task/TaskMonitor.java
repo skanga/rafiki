@@ -1,63 +1,59 @@
 package org.pinae.rafiki.task;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 /**
- * 任务执行监控
- * 
- * @author Huiyugeng
+ * Task execution monitoring
  *
+ * @author Huiyugeng
  */
 public class TaskMonitor implements Runnable {
-	private Logger logger = Logger.getLogger(TaskMonitor.class);
-	
-	private boolean stop = true;
-	
-	private TaskContainer container;
-	
-	/**
-	 * 构造函数
-	 * 
-	 * @param container 需要监控的任务容器
-	 */
-	public TaskMonitor(TaskContainer container) {
-		this.container = container;
-	}
-	
-	/**
-	 * 启动监控线程
-	 */
-	public void start() {
-		if (stop == true) {
-			new Thread(this, String.format("%s Container-Monitor", container.getName())).start();
-			stop = false;
-		}
-	}
+    private final Logger logger = LogManager.getLogger(TaskMonitor.class);
 
-	/**
-	 * 停止监控线程
-	 * 
-	 */
-	public void stop() {
-		stop = true;
-	}
-	
-	/**
-	 * 任务通知
-	 * 
-	 * @param task 任务信息
-	 * @param status 任务状态
-	 */
-	public void notify(Task task, int status) {
-		if (stop == false) {
-			
-		}
-	}
+    private boolean stop = true;
 
-	public void run() {
-		while (!stop) {
-			
-		}
-	}
-	
+    private final TaskContainer container;
+
+    /**
+     * Constructor
+     *
+     * @param container Task container to be monitored
+     */
+    public TaskMonitor(TaskContainer container) {
+        this.container = container;
+    }
+
+    /**
+     * Start monitoring thread
+     */
+    public void start() {
+        if (stop) {
+            new Thread(this, String.format("%s Container-Monitor", container.getName())).start();
+            stop = false;
+        }
+    }
+
+    /**
+     * Stop monitoring thread
+     */
+    public void stop() {
+        stop = true;
+    }
+
+    /**
+     * Task notification
+     *
+     * @param task Task information
+     * @param status Task status
+     */
+    public void notify(Task task, int status) {
+        if (!stop) {
+        }
+    }
+
+    public void run() {
+        while (!stop) {
+        }
+    }
 }

@@ -3,45 +3,44 @@ package org.pinae.rafiki.trigger;
 import java.util.Date;
 
 /**
- * 任务触发器
- * 
+ * Task Triggers
+ *
  * @author Huiyugeng
- * 
  */
 public interface Trigger extends Cloneable {
 
-	public String getName();
-	
-	public void setName(String name);
+    public String getName();
 
-	public Date getStartTime();
+    public void setName(String name);
 
-	public long getStartDelayTime();
+    public Date getStartTime();
 
-	public Date getEndTime();
+    public long getStartDelayTime();
 
-	public boolean isRepeat();
+    public Date getEndTime();
 
-	public long getRepeatInterval();
+    public boolean isRepeat();
 
-	public int getRepeatCount();
+    public long getRepeatInterval();
 
-	public boolean match(Date now);
+    public int getRepeatCount();
 
-	public void setStartTime(Date startTime);
+    public boolean match(Date now);
 
-	public void setRepeat(boolean repeat);
+    public void setStartTime(Date startTime);
 
-	public void setRepeatInterval(long repeatInterval);
+    public void setRepeat(boolean repeat);
 
-	public void setRepeatCount(int repeatCount);
+    public void setRepeatInterval(long repeatInterval);
 
-	public void setEndTime(Date endTime);
+    public void setRepeatCount(int repeatCount);
 
-	public void setEndDelayTime(long endDelayTime);
+    public void setEndTime(Date endTime);
 
-	public void setStartDelayTime(long startDelayTime);
-	
-	public Trigger clone() throws CloneNotSupportedException;
+    public void setEndDelayTime(long endDelayTime);
+
+    public void setStartDelayTime(long startDelayTime);
+
+    public Trigger clone() throws CloneNotSupportedException;
 
 }
