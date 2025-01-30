@@ -13,7 +13,7 @@ Rafiki is a task scheduling library for Java
 Maven
 
 	<dependency>
-	    <groupId>org.pinae</groupId>
+	    <groupId>io.github.skanga</groupId>
 	    <artifactId>rafiki-skanga</artifactId>
 	    <version>1.2</version>
 	</dependency>
