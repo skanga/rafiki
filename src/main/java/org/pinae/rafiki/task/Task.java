@@ -85,7 +85,7 @@ public class Task {
             this.name = "NONE";
         }
 
-        this.serial = name + "-" + Long.toString(System.currentTimeMillis());
+        this.serial = name + "-" + System.currentTimeMillis();
     }
 
     /**

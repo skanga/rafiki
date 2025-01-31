@@ -15,7 +15,7 @@ import org.pinae.rafiki.StringUtils;
  * @author Huiyugeng
  */
 public class TaskContainer {
-    private static Logger logger = LogManager.getLogger(TaskContainer.class);
+    private static final Logger logger = LogManager.getLogger(TaskContainer.class);
 
     /*
      * Set the default container name to: default-container
@@ -423,4 +423,11 @@ public class TaskContainer {
         return name;
     }
 
+    public TaskGroup getGroup(String groupName) {
+        return taskGroupMap.get(groupName);
+    }
+
+    public TaskGroup getDefaultGroup() {
+        return taskGroupMap.get(TaskGroup.DEFAULT);
+    }
 }

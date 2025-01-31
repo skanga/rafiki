@@ -10,14 +10,12 @@ import org.pinae.rafiki.trigger.impl.SimpleTrigger;
 
 public class TimeoutTest {
     private static final int ONE_SECOND = 1000;
-
     public static void main(String[] arg) throws Exception {
         Task task = new Task();
         Job job = new Job() {
             public String getName() {
                 return "TimeOutJob";
             }
-
             public boolean execute() throws JobException {
                 try {
                     TimeUnit.SECONDS.sleep(10);

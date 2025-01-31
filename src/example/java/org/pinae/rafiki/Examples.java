@@ -13,25 +13,19 @@ import org.pinae.rafiki.trigger.Trigger;
 import org.pinae.rafiki.trigger.impl.SimpleTrigger;
 
 public class Examples {
-
     private static Logger logger = LogManager.getLogger(Examples.class);
-
     private static final int ONE_SECOND = 1000;
-
     public static void main(String arg[]) {
 
         try {
             Job jobA = new Job() {
-
                 public String getName() {
                     return "JobA";
                 }
-
                 public boolean execute() throws JobException {
                     logger.info("JobA : Now is " + new Date().toString());
                     return true;
                 }
-
             };
 
             Trigger triggerA = new SimpleTrigger();
@@ -49,7 +43,6 @@ public class Examples {
                     logger.info("JobB : Now is " + new Date().toString());
                     return true;
                 }
-
             };
 
             Trigger triggerB = new SimpleTrigger();
@@ -63,12 +56,10 @@ public class Examples {
             container.addTask(taskA);
             container.addTask(taskB);
 
-
             logger.info("start at " + new Date().toString());
             logger.info("----Start (With Daemon)----");
 
             container.start(true);
-
 
             TimeUnit.SECONDS.sleep(11); // pause container
             logger.info("---------Pause All---------");

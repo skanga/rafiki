@@ -10,8 +10,8 @@ import org.pinae.rafiki.task.TaskContainer;
 import org.pinae.rafiki.task.TaskException;
 import org.pinae.rafiki.trigger.impl.SimpleTrigger;
 public class PressureTest {
-    private static Logger logger = LogManager.getLogger(PressureTest.class);
-    public static void main(String arg[]) throws TaskException {
+    private static final Logger logger = LogManager.getLogger(PressureTest.class);
+    public static void main(String[] arg) throws TaskException {
         int taskNum = 5;
         int repeat = 3;
 
@@ -24,7 +24,7 @@ public class PressureTest {
             trigger.setRepeatCount(repeat);
 
             Task task = new Task();
-            task.setName("delay-job:" + Integer.toString(i));
+            task.setName("delay-job:" + i);
             task.setJob(new DelayJob(i));
             task.setTrigger(trigger);
             container.addTask(task);

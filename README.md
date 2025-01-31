@@ -15,7 +15,7 @@ Maven
 	<dependency>
 	    <groupId>io.github.skanga</groupId>
 	    <artifactId>rafiki-skanga</artifactId>
-	    <version>1.3</version>
+	    <version>1.4</version>
 	</dependency>
 
 ## Build
